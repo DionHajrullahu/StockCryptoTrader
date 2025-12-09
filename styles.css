@@ -1,8 +1,12 @@
+/* Fat starts */
+
+
 /* Complete redesign with responsive admin dashboard styles */
 
 /* ============================================
    ROOT VARIABLES & THEME COLORS
    ============================================ */
+
 :root {
   /* Color Palette */
   --color-white: #ffffff;
@@ -620,3 +624,4 @@ section.right {
     left: -100%;
   }
 }
+/* Fat ends */
