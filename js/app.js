@@ -1,4 +1,4 @@
-/* Dioni starts */
+/* Dioni Starts */
 
 const symbolInput = document.getElementById("symbolInput")
 const searchBtn = document.getElementById("searchBtn")
@@ -183,7 +183,6 @@ window.addEventListener("DOMContentLoaded", () => {
   console.log("[v2] App initialized")
 })
 
-
 const themeBtn = document.querySelector(".theme-btn");
 const lightIcon = themeBtn.querySelector("span:first-child");
 const darkIcon = themeBtn.querySelector("span:last-child");
@@ -208,4 +207,63 @@ if (savedTheme === "dark") {
   darkIcon.classList.add("active");
 }
 
-/* Dioni ends*/
+const watchlist = [];
+const watchlistToggle = document.getElementById("watchlist-toggle");
+const watchlistContainer = document.getElementById("watchlist");
+const watchlistItems = document.getElementById("watchlist-items");
+
+watchlistToggle.addEventListener("click", () => {
+    watchlistContainer.classList.toggle("d-none");
+});
+
+function renderWatchlist() {
+    watchlistItems.innerHTML = "";
+    watchlist.forEach(symbol => {
+        const li = document.createElement("li");
+        li.textContent = symbol;
+        li.addEventListener("click", () => {
+            symbolInput.value = symbol;
+            doSearch();
+        });
+        watchlistItems.appendChild(li);
+    });
+}
+
+function addToWatchlist(symbol) {
+    if (!watchlist.includes(symbol)) {
+        watchlist.push(symbol);
+        renderWatchlist();
+        showAlert(`${symbol} added to watchlist`, "success");
+    } else {
+        showAlert(`${symbol} is already in watchlist`, "warning");
+    }
+}
+
+function removeFromWatchlist(symbol) {
+    const index = watchlist.indexOf(symbol);
+    if (index !== -1) {
+        watchlist.splice(index, 1);
+        renderWatchlist();
+        showAlert(`${symbol} removed from watchlist`, "success");
+    }
+}
+
+const watchlistBtn = document.createElement("button");
+watchlistBtn.textContent = "⭐ Add to Watchlist";
+watchlistBtn.className = "btn-primary";
+watchlistBtn.addEventListener("click", () => {
+    if (currentContext.symbol) addToWatchlist(currentContext.symbol);
+});
+currentCard.querySelector(".card-body").appendChild(watchlistBtn);
+
+const removeWatchlistBtn = document.createElement("button");
+removeWatchlistBtn.textContent = "❌ Remove from Watchlist";
+removeWatchlistBtn.className = "btn-primary";
+removeWatchlistBtn.addEventListener("click", () => {
+    if (currentContext.symbol) removeFromWatchlist(currentContext.symbol);
+});
+currentCard.querySelector(".card-body").appendChild(removeWatchlistBtn);
+
+renderWatchlist();
+
+/* Dioni Ends*/

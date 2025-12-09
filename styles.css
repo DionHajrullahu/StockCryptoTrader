@@ -1,14 +1,6 @@
 /* Fat starts */
 
-
-/* Complete redesign with responsive admin dashboard styles */
-
-/* ============================================
-   ROOT VARIABLES & THEME COLORS
-   ============================================ */
-
 :root {
-  /* Color Palette */
   --color-white: #ffffff;
   --color-light: #f0f0f0;
   --color-dark: #363949;
@@ -25,7 +17,6 @@
   --color-info: #7d8da1;
   --color-background: #f6f6f9;
 
-  /* Spacing */
   --card-border-radius: 2rem;
   --border-radius-1: 0.4rem;
   --border-radius-2: 0.8rem;
@@ -37,7 +28,29 @@
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
-/* Dark Theme Variables */
+.watchlist {
+    margin: 1rem 0 0 2rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-light);
+    border-radius: var(--border-radius-2);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.watchlist ul {
+    list-style: none;
+}
+
+.watchlist li {
+    cursor: pointer;
+    padding: 0.3rem 0;
+    color: var(--color-dark);
+}
+
+.watchlist li:hover {
+    color: var(--color-primary);
+}
+
 .dark-theme {
   --color-background: #181a1e;
   --color-white: #202030;
@@ -47,9 +60,6 @@
   --box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.4);
 }
 
-/* ============================================
-   GLOBAL STYLES
-   ============================================ */
 * {
   margin: 0;
   padding: 0;
@@ -108,9 +118,6 @@ small {
   color: var(--color-info);
 }
 
-/* ============================================
-   NAVBAR
-   ============================================ */
 nav {
   width: 100%;
   background: var(--color-white);
@@ -170,9 +177,6 @@ nav .profile-area button#menu-btn {
   cursor: pointer;
 }
 
-/* ============================================
-   MAIN LAYOUT
-   ============================================ */
 main {
   display: grid;
   grid-template-columns: 16rem auto 30rem;
@@ -181,9 +185,6 @@ main {
   margin: 1rem auto 4rem;
 }
 
-/* ============================================
-   ASIDE / SIDEBAR
-   ============================================ */
 aside {
   height: 100vh;
 }
@@ -238,9 +239,6 @@ aside .sidebar a.active span {
   color: var(--color-primary);
 }
 
-/* ============================================
-   MIDDLE SECTION
-   ============================================ */
 section.middle {
   margin-top: 1rem;
 }
@@ -252,7 +250,6 @@ section.middle .header {
   margin-bottom: 1.4rem;
 }
 
-/* Alert Box */
 .alert-box {
   padding: 1rem;
   margin-bottom: 1.4rem;
@@ -271,7 +268,6 @@ section.middle .header {
   display: none !important;
 }
 
-/* Search Section */
 .search-section {
   background: var(--color-white);
   padding: var(--card-padding);
@@ -454,7 +450,6 @@ section.middle .header {
   border-top: 1px solid var(--color-light);
 }
 
-/* Chart Section */
 .chart-section {
   background: var(--color-white);
   padding: var(--card-padding);
@@ -474,9 +469,6 @@ section.middle .header {
   height: 400px !important;
 }
 
-/* ============================================
-   RIGHT SECTION
-   ============================================ */
 section.right {
   margin-top: 1rem;
 }
@@ -519,11 +511,6 @@ section.right {
   line-height: 1.6;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-
-/* Tablets */
 @media screen and (max-width: 1200px) {
   main {
     grid-template-columns: 1fr;

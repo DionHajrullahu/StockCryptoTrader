@@ -1,6 +1,7 @@
 <!--Linor starts -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +10,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 
 </head>
+
 <body>
 
     <nav>
@@ -44,6 +47,16 @@
                     <span class="material-icons-sharp">dashboard</span>
                     <h4>Dashboard</h4>
                 </a>
+                <a href="#" id="watchlist-toggle">
+                    <span class="material-icons-sharp">star</span>
+                    <h4>Watchlist</h4>
+                </a>
+
+                <!-- Watchlist container -->
+                <div id="watchlist" class="watchlist d-none">
+                    <ul id="watchlist-items"></ul>
+                </div>
+
                 <a href="#">
 
                     <span class="material-icons-sharp">currency_exchange</span>
@@ -78,11 +91,11 @@
                         <label class="form-label">Asset Type</label>
                         <div class="radio-group">
                             <label class="radio-label">
-                                <input type="radio" name="assetType" value="stock" checked /> 
+                                <input type="radio" name="assetType" value="stock" checked />
                                 <span>Stock</span>
                             </label>
                             <label class="radio-label">
-                                <input type="radio" name="assetType" value="crypto" /> 
+                                <input type="radio" name="assetType" value="crypto" />
                                 <span>Crypto</span>
                             </label>
                         </div>
@@ -103,7 +116,7 @@
                 </div>
             </div>
 
-    
+
             <div id="currentCard" class="asset-card d-none">
                 <div class="card-header">
                     <h2 id="currentName"></h2>
@@ -143,7 +156,8 @@
                     <h2>About</h2>
                 </div>
                 <div class="info-content">
-                    <p>Search for stocks (like AAPL, TSLA) or cryptocurrencies (like BTC, ETH) to view real-time prices and historical data.</p>
+                    <p>Search for stocks (like AAPL, TSLA) or cryptocurrencies (like BTC, ETH) to view real-time prices
+                        and historical data.</p>
                     <p><strong>Data Sources:</strong></p>
                     <ul>
                         <li>Stocks: Alpha Vantage API</li>
@@ -163,5 +177,6 @@
     <script src="js/app.js"></script>
 
 </body>
+
 </html>
- <!-- Linor ends -->
+<!-- Linor ends -->
