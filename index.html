@@ -1,0 +1,178 @@
+<!-- index.html (unchanged structure, only safe minor adjustments) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock & Crypto Tracker</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <!-- navbar -->
+    <nav>
+        <div class="container">
+            <h2 class="logo">Stock & Crypto Tracker</h2>
+            <div class="profile-area">
+                <div class="theme-btn">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- main -->
+    <main>
+
+        <!-- aside -->
+        <aside>
+            <button id="close-btn">
+                <span class="material-icons-sharp">close</span>
+            </button>
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">dashboard</span>
+                    <h4>Dashboard</h4>
+                </a>
+                <a href="#">
+
+                    <span class="material-icons-sharp">currency_exchange</span>
+                    <h4>Exchange</h4>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">account_balance_wallet</span>
+                    <h4>Wallet</h4>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">pie_chart</span>
+                    <h4>Analytics</h4>
+                </a>
+            </div>
+        </aside>
+
+        <!-- section middle -->
+        <section class="middle">
+            <div class="header">
+                <h1>Market Tracker</h1>
+            </div>
+
+            <!-- Alert Box -->
+            <div id="alertBox" class="alert-box d-none"></div>
+
+            <!-- Search Form -->
+            <div class="search-section">
+                <div class="search-form">
+                    <div class="form-group">
+                        <label class="form-label">Symbol</label>
+                        <input id="symbolInput" type="text" class="form-input" placeholder="AAPL, BTC, ETH..." />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Asset Type</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="assetType" value="stock" checked /> 
+                                <span>Stock</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="assetType" value="crypto" /> 
+                                <span>Crypto</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">History Range</label>
+                        <select id="historyTypeSel" class="form-select">
+                            <option value="1">1 Day</option>
+                            <option value="7" selected>7 Days</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-primary" id="searchBtn">
+                        <span class="material-icons-sharp">search</span>
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Current Asset Card -->
+            <div id="currentCard" class="asset-card d-none">
+                <div class="card-header">
+                    <h2 id="currentName"></h2>
+                    <span class="symbol-badge" id="currentSymbol"></span>
+                </div>
+                <div class="card-body">
+                    <div class="price-section">
+                        <div class="price-label">Current Price</div>
+                        <div class="price-value">$<span id="currentPrice"></span></div>
+                    </div>
+                    <div class="change-section">
+                        <div class="change-item">
+                            <div class="change-label">Change (Value)</div>
+                            <div class="change-value" id="currentChangeVal"></div>
+                        </div>
+                        <div class="change-item">
+                            <div class="change-label">Change (%)</div>
+                            <div class="change-value" id="currentChangePct"></div>
+                        </div>
+                    </div>
+                    <div class="timestamp" id="currentTimestamp"></div>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="chart-section">
+                <h3>Historical Price Chart</h3>
+                <canvas id="historyChart"></canvas>
+            </div>
+
+        </section>
+
+        <!-- section right -->
+        <section class="right">
+            <div class="info-panel">
+                <div class="header">
+                    <h2>About</h2>
+                </div>
+                <div class="info-content">
+                    <p>Search for stocks (like AAPL, TSLA) or cryptocurrencies (like BTC, ETH) to view real-time prices and historical data.</p>
+                    <p><strong>Data Sources:</strong></p>
+                    <ul>
+                        <li>Stocks: Alpha Vantage API</li>
+                        <li>Crypto: CoinGecko API</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- App Scripts in correct order -->
+    <!-- dashboard.js can be optional; keep if you have it -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
