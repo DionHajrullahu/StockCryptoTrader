@@ -1,8 +1,5 @@
-/* app.js - FIXED so radio buttons work correctly */
+/* Dioni starts */
 
-console.log("[v2] App.js loading...")
-
-// DOM elements
 const symbolInput = document.getElementById("symbolInput")
 const searchBtn = document.getElementById("searchBtn")
 const currentCard = document.getElementById("currentCard")
@@ -15,10 +12,8 @@ const currentTimestamp = document.getElementById("currentTimestamp")
 const historyTypeSel = document.getElementById("historyTypeSel")
 const alertBox = document.getElementById("alertBox")
 
-// Context
 const currentContext = { type: "stock", symbol: "", coinId: "", days: 7 }
 
-// CoinGecko Map
 const coinMap = {
   BTC: "bitcoin", ETH: "ethereum", BNB: "binancecoin", XRP: "ripple", ADA: "cardano",
   SOL: "solana", DOGE: "dogecoin", DOT: "polkadot", MATIC: "matic-network", AVAX: "avalanche-2",
@@ -31,7 +26,6 @@ const coinMap = {
   CRV: "curve-dao-token", MINA: "mina-protocol", IMX: "immutable-x", LRC: "loopring"
 }
 
-// Stock alias → ticker
 const stockAliases = {
   TESLA: "TSLA", APPLE: "AAPL", MICROSOFT: "MSFT", GOOGLE: "GOOGL", ALPHABET: "GOOGL",
   AMAZON: "AMZN", META: "META", FACEBOOK: "META", NVIDIA: "NVDA", NETFLIX: "NFLX",
@@ -46,7 +40,6 @@ const stockAliases = {
   EXXON: "XOM", CHEVRON: "CVX", VERIZON: "VZ", TMUS: "TMUS", GE: "GE"
 }
 
-// Alerts
 function showAlert(msg, type = "danger") {
   alertBox.textContent = msg
   alertBox.className = `alert-box`
@@ -59,7 +52,6 @@ function clearAlert() {
   alertBox.classList.add("d-none")
 }
 
-// Render current data
 function renderCurrent(asset) {
   currentCard.classList.remove("d-none")
   currentName.textContent = asset.name
@@ -81,7 +73,6 @@ function renderCurrent(asset) {
   }
 }
 
-// SEARCH FUNCTION
 async function doSearch(e) {
   if (e) e.preventDefault()
   clearAlert()
@@ -95,7 +86,6 @@ async function doSearch(e) {
 
   const inputUpper = symbol.toUpperCase()
 
-  // ⭐ FIXED: stock alias mapping only happens when user selected STOCK
   if (type === "stock") {
     if (stockAliases[inputUpper]) {
       const original = inputUpper
@@ -105,7 +95,6 @@ async function doSearch(e) {
       symbol = inputUpper
     }
   } else {
-    // crypto mode
     symbol = inputUpper
   }
 
@@ -119,7 +108,6 @@ async function doSearch(e) {
   try {
     let result, historyPoints = []
 
-    // CRYPTO
     if (type === "crypto") {
       const coinId = coinMap[symbol]
       if (!coinId) throw new Error(`Unknown crypto: ${symbol}`)
@@ -142,7 +130,6 @@ async function doSearch(e) {
       })
     }
 
-    // STOCK
     else {
       result = await API.getStockCurrent(symbol)
       if (!result || result.price == null) {
@@ -170,7 +157,6 @@ async function doSearch(e) {
       })
     }
 
-    // Chart
     if (historyPoints.length > 0) {
       if (window.renderHistoryChart) {
         window.renderHistoryChart(historyPoints, currentContext)
@@ -189,15 +175,37 @@ async function doSearch(e) {
   }
 }
 
-// Listeners
 searchBtn.addEventListener("click", doSearch)
 symbolInput.addEventListener("keypress", e => { if (e.key === "Enter") doSearch(e) })
 historyTypeSel.addEventListener("change", () => { if (currentContext.symbol) doSearch() })
 
-// ⭐ FIXED: remove forced crypto selection
 window.addEventListener("DOMContentLoaded", () => {
   console.log("[v2] App initialized")
-  // No automatic driver here — leave user's chosen radio button & symbol field alone
 })
 
-console.log("[v2] App.js loaded successfully!")
+
+const themeBtn = document.querySelector(".theme-btn");
+const lightIcon = themeBtn.querySelector("span:first-child");
+const darkIcon = themeBtn.querySelector("span:last-child");
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+
+  lightIcon.classList.toggle("active");
+  darkIcon.classList.toggle("active");
+
+  if (document.body.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+});
+
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+  document.body.classList.add("dark-theme");
+  lightIcon.classList.remove("active");
+  darkIcon.classList.add("active");
+}
+
+/* Dioni ends*/

@@ -1,9 +1,7 @@
-// Shendet – Chart / Historical Data
-/* BEGIN Chart Rendering */
+/* BEGIN Shendeti */
 
 let chartInstance = null;
 
-// Expose functions for app.js
 window.renderHistoryChart = renderHistoryChart;
 window.clearChart = clearChart;
 
@@ -28,7 +26,6 @@ function renderHistoryChart(points) {
 
   const data = points.map((p) => p[1]);
 
-  // Destroy previous chart instance to avoid overlay
   if (chartInstance) {
     console.log("[v1] Destroying previous chart instance");
     chartInstance.destroy();
@@ -127,4 +124,4 @@ function clearChart() {
   chartInstance = null;
 }
 
-/* END Chart Rendering */
+/* END Shendeti */
